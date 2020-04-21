@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function Node(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+var node1 = new Node(4);
+node1.left = new Node(3);
+node1.right = new Node(6);
+node1.left.left = new Node(2);
+node1.right.right = new Node(-1);
+// var pathSum = function(root, sum) {
+//     var count = 0;
+//     function path(root, sum) {
+//         if(!root) return 0;
+//         debugger
+//         if(root && root.value == sum) count++;
+//         debugger
+//         path(root.left, sum-root.value);
+//         debugger
+//         path(root.right, sum-root.value);
+//         return count;
+//     }
+//     console.log( path(root, sum),path(root.left, sum),path(root.right, sum));
+    
+//     return  path(root, sum)+path(root.left, sum)+path(root.right, sum) ;
+// };
+var minDepth = function(root) {
+    // if(!root) return 0;
+    // let l = minDepth(root.left);
+    // let r= minDepth(root.right);
+    // if(l==0&&r!=0||r==0&&l!=0) return (l||r)+1;
+    // return Math.min(l, r)+1;
+    if(!root) return 0;
+    let arr = [];//层次遍历的结果
+    let quene = [];//队列
+    let min = 0;
+    quene.push(root);
+    console.log(quene);
+    debugger
+    while(quene.length!=0){
+        let cur = quene.shift();
+        arr.push(cur);
+        console.log(cur);
+       debugger
+console.log(arr);
+        if(cur.left!=null) quene.push(cur.left);
+        debugger
+        if(cur.right!=null) quene.push(cur.right);
+        debugger
+    }
+    //对层次遍历的结果判断是否是叶子结点
+    for(let i = 0; i< arr.length; i++){
+       if( arr[i].left==null && arr[i].right == null) return min+1;
+       if(arr[i].left||arr[i].right) min++;
+    }
+    return min;
+
+};
+result = minDepth(node1)
+    </script>
+</body>
+</html>
